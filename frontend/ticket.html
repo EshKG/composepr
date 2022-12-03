@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<style>
+
+</style>
+<body>
+
+<form action="/ticket" method="POST">
+    {% module xsrf_form_html() %}
+<h3>Страница приема обращения гражданина
+<p>
+<label>Фамилия</label>
+<input type="text" name="secondname">
+</p>
+
+<p>
+<label>Имя</label>
+<input type="text" name="name">
+</p>
+
+<p>
+<label>Отчество</label>
+<input type="text" name="patronymic">
+</p>
+
+<p>
+<label>Телефон</label>
+<input type="tel" name="phone" pattern="^[+7|7|8]([0-9]{10})$">
+</p>
+
+<p>
+<label>Обращение</label>
+<input type="text" name="text">
+</p>
+
+<p>
+<button type="submit" value="send">Отправить обращение
+</p>
+
+</form>
+
+<!--
+<script>
+function blue(){
+     let back= document.body;
+     back.style.background="blue";
+}
+function white(){
+     let back= document.body;
+     back.style.background="white";
+}
+</script>
+ -->
+
+
+
+
+
+<!--setTimeout(() => document.body.style.background = '', 3000); // вернуть назад-->
+
+<!--
+  <p>...После скрипта.</p>
+-->
+</body>
+
+</html>
