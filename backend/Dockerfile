@@ -3,14 +3,12 @@ FROM python:3.9
 
 EXPOSE 80
 
-WORKDIR /backend
 
 
-COPY requirements.txt /backend/requirements.txt
+COPY /backend/requirements.txt /backend/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /backend/requirements.txt
 
 
 COPY . .
 
-ENTRYPOINT ["python3", "main.py"]
-
+ENTRYPOINT ["python3", "/backend/main.py"]

@@ -8,18 +8,21 @@ services:
      ports:
        - '15672:15672'
        - '5672:5672'
-
+       - '5671:5671'
+       - '4369:4369'
    backend:
-     build: backend
-     command: python3 main.py
+     build:
+       context: /
+       dockerfile: ./backend/Dockerfile
+     #command: python main.py
      ports:
        - '80:80'
 
    servicedb:
      build: servicedb
-     command: python main.py
+     #command: python main.py
      ports:
-       - '8888'
+       - '8080:8080'
    db:
      build: db
      environment:
@@ -27,4 +30,4 @@ services:
        - POSTGRES_USER=postgres
        - POSTGRES_PASSWORD=test
      ports:
-       - '5466:5466'
+       - '5432:5432'
