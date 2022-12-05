@@ -1,5 +1,5 @@
 # DEMO:
-# docker-compose(rabbitmq,tornado(python),FastAPI,postgresql)\
+# docker-compose(rabbitmq,tornado(python),FastAPI,postgresql)
 
 # Необходимые команды:
 
