@@ -1,10 +1,69 @@
-# DEMO:
-# docker-compose(rabbitmq,tornado(python),FastAPI,postgresql)
+# Описание репозитория
 
-# Необходимые команды:
+Этот репозиторий содержит пример реализации веб-приложения, которое взаимодействует с формой на фронтенде, обрабатывает данные через Tornado, использует RabbitMQ для передачи сообщений и сохраняет данные в базу данных PostgreSQL через FastAPI.
 
-```git clone https://github.com/EshKG/composepr```
+## Основные компоненты
 
-```docker-compose build```
+1. **Frontend**: Простая форма, которая отправляет данные на сервер через GET и POST запросы.
+2. **Tornado**: Сервер на Python, который обрабатывает запросы от фронтенда. При получении POST запроса Tornado создает сообщение в RabbitMQ с данными из формы.
+3. **RabbitMQ**: Очередь сообщений, которая используется для передачи данных между Tornado и FastAPI.
+4. **FastAPI (ServiceDB)**: Микросервис, который забирает данные из RabbitMQ и сохраняет их в базу данных PostgreSQL.
+5. **PostgreSQL**: Реляционная база данных, в которую сохраняются данные из формы.
 
-```docker-compose up -d```
+## Как это работает
+
+1. Пользователь заполняет форму на фронтенде и отправляет данные.
+2. Tornado обрабатывает запрос, создает сообщение в RabbitMQ с данными из формы.
+3. FastAPI (ServiceDB) получает сообщение из RabbitMQ и записывает данные в PostgreSQL.
+
+## Установка и запуск
+
+1. Клонируйте репозиторий:
+   ```bash
+   git clone https://github.com/EshKG/composepr
+
+2. Перейдите в директорию проекта:
+   ```bash
+   cd composepr
+
+3. Соберите Docker-контейнеры:
+   ```bash
+   docker-compose build
+4. Запустите контейнейры в фоновом режиме:
+   ```bash
+   docker-compose up -d
+
+## Демонстрация
+После запуска контейнеров вы можете открыть фронтенд в браузере, заполнить форму и отправить данные. Данные будут обработаны, переданы через RabbitMQ и сохранены в PostgreSQL.
+
+## Компоненты
+- **frontend**: Простая HTML форма.
+
+- **backend**: Обработка запросов с Tornado и взаимодействие с RabbitMQ.
+
+- **rabbitmq**: Очередь сообщений для передачи данных.
+
+- **servicedb**: Микросервис на FastAPI для работы с брокером сообщений и с базой данных.
+
+- **db**: База данных PostgreSQL для хранения данных.
+
+## Структура проекта:
+```
+├── backend/           
+│   ├── Dockerfile                 
+│   ├── main.py
+│   └── requirements.txt        
+├── db/                 
+│   ├── Dockerfile     
+│   └── postgres.sql     
+├── frontend/           
+│   └── ticket.html            
+├── rabbitmq/           
+│   └── Dockerfile          
+├── servicedb/          
+│   ├── Dockerfile
+|   ├── __init__.py
+|   ├── main.py
+│   └── requirements.txt            
+├── README.md           
+└── docker-compose.yml  
